@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  nome: string = "Shirley" ;
+  nome = "" ;
   cor = "primary";
   humor = "sad"
   checked_humor = false;
+  sexo = "";
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   trocarCor():void{
     console.log('Chamou trocarCor!')
@@ -43,6 +45,19 @@ export class HomePage {
       this.humor = "sad";
     }
 
+  }
+  selecionaSexo(event): void {
+    console.log(event.detail.value);
+    this.sexo = event.detail.value;
+  }
+
+  defineNome(event): void {
+    console.log(event.detail.value);
+    this.nome = event.detail.value;
+  }
+
+  irParaDetalhes(){
+    this.router.navigate(['/detalhes']);
   }
    
 }
